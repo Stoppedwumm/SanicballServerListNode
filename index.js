@@ -47,7 +47,7 @@ app.post('/add', (req, res) => {
         existingEntry.last_ping = new Date();
         return res.send('Your server has been registered.');
     } else {
-        if (serverEntries.length >= 420) {
+        if (serverEntries.length >= 1000000000) {
             return res.status(429).send('Too many servers.');
         }
 
