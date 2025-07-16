@@ -21,6 +21,7 @@ function purgeOldServers() {
 
 // List all active servers (one per line, IP:port)
 app.get('/', (req, res) => {
+    console.log(req.headers['user-agent'])
     console.log('Received request for server list');
     purgeOldServers();
 
