@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+        <title>Sanicball Server List</title>
+    </head>
+    <body>
+        <div class="container" width="100%">
+            <h1>How to deploy an server</h1>
+            <h2>Step 1: Choosing your executable</h2>
+            <p>Windows Download: <a href="https://gamejolt.com/get/build?game=17385&build=603787">Here</a></p>
+            <p>Linux Download: <a href="https://gamejolt.com/get/build?game=17385&build=603784">Here</a></p>
+            <p>For Macs: Download the Windows Executable</p>
+            <hr>
+            <h2>Step 2: Setup NGROK</h2>
+            <p>Create your free ngrok account here: <a href="https://dashboard.ngrok.com/signup">https://dashboard.ngrok.com/signup</a></p>
+            <p>Setup the agent according to the website (<a href="https://dashboard.ngrok.com/get-started/setup/">https://dashboard.ngrok.com/get-started/setup/</a>) (you need an terminal)</p>
+            <p>Skip the <kbd>ngrok http http://localhost:8080</kbd> step as we don't need it</p>
+            <p>Run the following command in your terminal:</p>
+            <kbd>ngrok tcp 25000</kbd>
+            <p>You should see something like this</p>
+            <img src="/www/img/ngrokResult.png" width="100%">
+            <p>You can see the public IP and port, where</p>
+            <p>IP: <kbd>6.tcp.ngrok.io</kbd></p>
+            <p>Port: <kbd>16142</kbd></p>
+            <img src="/www/img/ngrokExpl.png" width="100%">
+            <p><b>Do not close the terminal window, it's the tunnel between your server and the internet</b></p>
+            <hr>
+            <h2>Step 3: Running the Server</h2>
+            <p>Extract the zip file into any folder</p>
+            <p><a href="https://www.wikihow.com/Unzip-a-File">Tutorial</a></p>
+            <p>Windows: Execute the SanicballServer.exe file.</p>
+            <p>Linux: Execute the SanicballServer file.</p>
+            <h3>Mac</h3>
+            <h4>Download Homebrew</h4>
+            <p>Open Terminal and type: <kbd>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</kbd></p>
+            <p>Install wine via <kbd>brew install --cask wine-stable</kbd></p>
+            <p>Run the server via <kbd>wine SanicballServer.exe</kbd></p>
+            <hr>
+            <h2>Step 4: Configuring the server</h2>
+            <p>When you start the server, you will be asked some questions</p>
+            <p>Enter the server name and press <kbd>⏎ (Enter/Return)</kbd></p>
+            <p>Just press <kbd>⏎ (Enter/Return)</kbd> to use the default port</p>
+            <p>Enter the max player count (<kbd>1</kbd>-<kbd>64</kbd>) and press <kbd>⏎ (Enter/Return)</kbd></p>
+            <p>Enter if you want to enable server lists (type <kbd>yes</kbd> or <kbd>no</kbd>) and press <kbd>⏎ (Enter/Return)</kbd> (people can still connect to your server without a server list via the ngrok details)</p>
+            <p>If you chose to enable server lists, enter <kbd>https://sanicball-server-list.vercel.app</kbd> and press <kbd>⏎ (Enter/Return)</kbd></p>
+            <p>Enter the IP from NGROK (<b>NOT THE PORT</b>) and press <kbd>⏎ (Enter/Return)</kbd></p>
+            <p>Enter the port from NGROK and press <kbd>⏎ (Enter/Return)</kbd></p>
+            <h3>My example config</h3>
+            <img src="/www/img/serverSetup.png" width="100%">
+            <h2>Step 5: Done</h2>
+            <h3>Congratulations, your server is now running and added to the server list!</h3>
+            <p>Check if your server is listed here: <a href="/list">https://sanicball-server-list.vercel.app/list</a></p>
+            <p>To stop the server, just close the terminal window</p>
+            <h1><a href="/www">Next step: go back and setup the server list in your game</a></h1>
+        </div>
+    </body>
+</html>

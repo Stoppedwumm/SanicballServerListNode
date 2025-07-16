@@ -1,8 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const path = require("path")
+const checkIfUserAgentIsBrowser = require('./UserAgentManager');
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use("/www", express.static(path.join(__dirname, 'public')));
+app.use("/bootstrap", express.static(path.join(__dirname, "node_modules", "bootstrap", "dist", "css")));
 
 const PORT = 8000;
 
@@ -21,7 +25,20 @@ function purgeOldServers() {
 
 // List all active servers (one per line, IP:port)
 app.get('/', (req, res) => {
-    console.log(req.headers['user-agent'])
+    if (checkIfUserAgentIsBrowser(req)) {
+        res.redirect("/www")
+        return
+    }
+
+    console.log('Received request for server list');
+    purgeOldServers();
+
+    const responseText = serverEntries.map(entry => `${entry.ip}:${entry.port}<br>`).join('');
+    res.set('Content-Type', 'text/html');
+    res.send(responseText);
+});
+
+app.get('/list', (req, res) => {
     console.log('Received request for server list');
     purgeOldServers();
 
@@ -64,7 +81,7 @@ app.post('/add', (req, res) => {
 
 // Fallback 404 for non-POST /add requests
 app.all('/add', (req, res) => {
-    res.status(404).send('Not found.');
+    res.redirect("/www/addServer");
 });
 
 // Start server

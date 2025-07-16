@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/BK-TN/SanicballServerList#readme",
   "dependencies": {
+    "bootstrap": "^5.3.7",
     "express": "^5.1.0"
   },
   "devDependencies": {
